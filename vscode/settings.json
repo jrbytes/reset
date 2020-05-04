@@ -1,7 +1,6 @@
 {
   "window.menuBarVisibility": "toggle",
   "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}",
-  "window.titleBarStyle": "custom",
 
   "editor.tabSize": 2,
   "editor.fontSize":16,
@@ -57,6 +56,25 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
     }
+  },
+
+  "material-icon-theme.folders.associations": {
+    "infra": "app",
+    "entities": "class",
+    "schemas": "class",
+    "typeorm": "database",
+    "repositories": "mappings",
+    "http": "container",
+    "migrations": "tools",
+    "modules": "components",
+    "implementations": "core",
+    "dtos": "typescript",
+    "fakes": "mock"
+  },
+
+  "material-icon-theme.files.associations": {
+    "ormconfig.json": "database",
+    "tsconfig.json": "tune"
   },
 
   "editor.tokenColorCustomizations": {
@@ -170,5 +188,7 @@
       }
     ]
   },
-  "workbench.colorTheme": "Dracula"
+  "workbench.colorTheme": "Dracula",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "window.zoomLevel": 0
 }
