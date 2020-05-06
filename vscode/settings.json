@@ -22,7 +22,7 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
 
-  "terminal.integrated.fontSize":16,
+  "terminal.integrated.fontSize":15,
 
   "workbench.iconTheme":"material-icon-theme",
   "workbench.startupEditor": "newUntitledFile",
@@ -74,7 +74,8 @@
 
   "material-icon-theme.files.associations": {
     "ormconfig.json": "database",
-    "tsconfig.json": "tune"
+    "tsconfig.json": "tune",
+    "insomnia.json": "coffee"
   },
 
   "editor.tokenColorCustomizations": {
@@ -190,5 +191,7 @@
   },
   "workbench.colorTheme": "Dracula",
   "liveServer.settings.donotShowInfoMsg": true,
-  "window.zoomLevel": 0
+  "window.zoomLevel": 0,
+  "terminal.integrated.fontWeightBold": "700",
+  "terminal.integrated.fontWeight": "700"
 }
