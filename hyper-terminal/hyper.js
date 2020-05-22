@@ -155,11 +155,10 @@ module.exports = {
   plugins: [
     "hyper-dracula",
     "hyperterm-tabs",
+    "git-falcon9",
     "hyperborder",
     "hyper-font-ligatures",
     "hyper-autoprofile",
-    "gitrocket",
-    // "git-falcon9"
   ],
 
   // in development, you can create a directory under
