@@ -1,16 +1,14 @@
 {
-  "window.menuBarVisibility": "toggle",
   "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}",
 
   "editor.tabSize": 2,
-  "editor.fontSize":16,
-  "editor.fontFamily":"Fira Code Retina",
-  "editor.fontLigatures":true,
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
 
   "editor.rulers": [80, 120],
 
   "explorer.compactFolders": false,
-  "editor.renderLineHighlight":"gutter",
+  "editor.renderLineHighlight": "gutter",
   "workbench.editor.labelFormat": "short",
   "extensions.ignoreRecommendations": true,
 
@@ -21,13 +19,8 @@
   "editor.parameterHints.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
-
-  "terminal.integrated.fontSize":15,
-
-  "workbench.iconTheme":"material-icon-theme",
   "workbench.startupEditor": "newUntitledFile",
 
-  "terminal.integrated.shell.osx": "/bin/zsh",
   "window.newWindowDimensions": "maximized",
   "workbench.preferredDarkColorTheme": "Dracula",
   "workbench.preferredHighContrastColorTheme": "Dracula",
@@ -191,7 +184,11 @@
   },
   "workbench.colorTheme": "Dracula",
   "liveServer.settings.donotShowInfoMsg": true,
-  "window.zoomLevel": 0,
   "terminal.integrated.fontWeightBold": "700",
-  "terminal.integrated.fontWeight": "700"
+  "terminal.integrated.fontWeight": "700",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontFamily": "Fira Code",
+  "terminal.integrated.fontFamily": "Fira Code",
+  "editor.inlineSuggest.enabled": true,
+  "terminal.integrated.gpuAcceleration": "off"
 }
