@@ -1,6 +1,5 @@
 {
   "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}",
-
   "editor.tabSize": 2,
   "editor.fontSize": 14,
   "editor.fontLigatures": true,
@@ -30,10 +29,19 @@
   "emmet.syntaxProfiles": {"javascript": "jsx"},
   "emmet.includeLanguages": {"javascript": "javascriptreact"},
 
+  "[flutter]": {
+    "editor.formatOnSave": false,
+  },
+  
+  "[prisma]": {
+    "editor.formatOnSave": true,
+  },
+
   "[javascript]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
-    }
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascriptreact]": {
     "editor.codeActionsOnSave": {
@@ -43,12 +51,14 @@
   "[typescript]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
-    }
+    },
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescriptreact]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
-    }
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
   "material-icon-theme.folders.associations": {
@@ -62,7 +72,8 @@
     "modules": "components",
     "implementations": "core",
     "dtos": "typescript",
-    "fakes": "mock"
+    "fakes": "mock",
+    "adapters": "contract",
   },
 
   "material-icon-theme.files.associations": {
@@ -182,7 +193,6 @@
       }
     ]
   },
-  "workbench.colorTheme": "Dracula",
   "liveServer.settings.donotShowInfoMsg": true,
   "terminal.integrated.fontWeightBold": "700",
   "terminal.integrated.fontWeight": "700",
@@ -190,5 +200,33 @@
   "editor.fontFamily": "Fira Code",
   "terminal.integrated.fontFamily": "Fira Code",
   "editor.inlineSuggest.enabled": true,
-  "terminal.integrated.gpuAcceleration": "off"
+  "terminal.integrated.gpuAcceleration": "off",
+  "bracket-pair-colorizer-2.depreciation-notice": false,
+  "cSpell.language": "en,pt,pt_BR",
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": true,
+    "markdown": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "vscode_vibrancy.theme": "Dark (Only Subbar)",
+  "editor.accessibilitySupport": "off",
+  "workbench.colorTheme": "Dracula",
+  "dart.hotReloadOnSave": "all",
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "generate.template.type": "Clean Code"
 }
