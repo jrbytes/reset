@@ -30,11 +30,11 @@
   "emmet.includeLanguages": {"javascript": "javascriptreact"},
 
   "[flutter]": {
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": false
   },
   
   "[prisma]": {
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": true
   },
 
   "[javascript]": {
@@ -73,13 +73,14 @@
     "implementations": "core",
     "dtos": "typescript",
     "fakes": "mock",
-    "adapters": "contract",
+    "adapters": "contract"
   },
 
   "material-icon-theme.files.associations": {
     "ormconfig.json": "database",
     "tsconfig.json": "tune",
-    "insomnia.json": "coffee"
+    "insomnia.json": "coffee",
+    ".nvmrc": "npm"
   },
 
   "editor.tokenColorCustomizations": {

@@ -1,8 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$PATH:`pwd`/flutter/bin"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/jr/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -23,14 +25,13 @@ ZSH_THEME="spaceship"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -45,6 +46,9 @@ ZSH_THEME="spaceship"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -95,12 +99,14 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshrc="code ~/.zshrc"
-alias ohmyzsh="code ~/.oh-my-zsh"
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Init projects with aliases, include files in >_ chmod +x <locale>
-alias pomo-backend="~/commands/iniciar-pomodoro-back-end.sh"
-alias pomo-web="~/commands/iniciar-pomodoro-web.sh"
+alias hegab-api="~/dev/hegab/prontuario/hegab-api.sh"
+alias hegab-web="~/dev/hegab/prontuario/hegab-web.sh"
+alias t="trans :pt"
+alias simulator="open -a Simulator"
+alias e="npm run"
 
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
@@ -117,29 +123,124 @@ SPACESHIP_PROMPT_ORDER=(
 )
 SPACESHIP_USER_SHOW=always
 SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_CHAR_SYMBOL="🚀"
 SPACESHIP_CHAR_SUFFIX=" "
+
 ### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
 fi
 
-source "$HOME/.zinit/bin/zinit.zsh"
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source /Users/jrbytes/.docker/init-zsh.sh || true # Added by Docker Desktop
+
+#####################################################################################################
+# ZSH function to auto-switch to correct Node version
+#   https://gist.github.com/callumlocke/30990e247e52ab6ac1aa98e5f0e5bbf5
+#
+# - Searches up your directory tree for the closest .nvmrc, just like `nvm use` does.
+#
+# - If you are already on the right Node version, IT DOES NOTHING, AND PRINTS NOTHING.
+#
+# - Works correctly if your .nvmrc file contains something relaxed/generic,
+#   like "4" or "v12.0" or "stable".
+#
+# - If an .nvmrc is found but you have no installed version that satisfies it, it
+#   prints a clear warning, so you can decide whether you want to run `nvm install`.
+#
+# - If no .nvmrc is found, it does `nvm use default`.
+#
+# Recommended: leave your default as something generic,
+# e.g. do `nvm alias default stable`
+#####################################################################################################
+
+auto-switch-node-version() {
+  NVMRC_PATH=$(nvm_find_nvmrc)
+  CURRENT_NODE_VERSION=$(nvm version)
+
+  if [[ ! -z "$NVMRC_PATH" ]]; then
+    # .nvmrc file found!
+
+    # Read the file
+    REQUESTED_NODE_VERSION=$(cat $NVMRC_PATH)
+
+    # Find an installed Node version that satisfies the .nvmrc
+    MATCHED_NODE_VERSION=$(nvm_match_version $REQUESTED_NODE_VERSION)
+
+    if [[ ! -z "$MATCHED_NODE_VERSION" && $MATCHED_NODE_VERSION != "N/A" ]]; then
+      # A suitable version is already installed.
+
+      # Clear any warning suppression
+      unset AUTOSWITCH_NODE_SUPPRESS_WARNING
+
+      # Switch to the matched version ONLY if necessary
+      if [[ $CURRENT_NODE_VERSION != $MATCHED_NODE_VERSION ]]; then
+        nvm use $REQUESTED_NODE_VERSION
+      fi
+    else
+      # No installed Node version satisfies the .nvmrc.
+
+      # Quit silently if we already just warned about this exact .nvmrc file, so you
+      # only get spammed once while navigating around within a single project.
+      if [[ $AUTOSWITCH_NODE_SUPPRESS_WARNING == $NVMRC_PATH ]]; then
+        return
+      fi
+
+      # Convert the .nvmrc path to a relative one (if possible) for readability
+      RELATIVE_NVMRC_PATH="$(realpath --relative-to=$(pwd) $NVMRC_PATH 2> /dev/null || echo $NVMRC_PATH)"
+
+      # Print a clear warning message
+      echo ""
+      echo "WARNING"
+      echo "  Found file: $RELATIVE_NVMRC_PATH"
+      echo "  specifying: $REQUESTED_NODE_VERSION"
+      echo "  ...but no installed Node version satisfies this."
+      echo "  "
+      echo "  Current node version: $CURRENT_NODE_VERSION"
+      echo "  "
+      echo "  You might want to run \"nvm install\""
+
+      # Record that we already warned about this unsatisfiable .nvmrc file
+      export AUTOSWITCH_NODE_SUPPRESS_WARNING=$NVMRC_PATH
+    fi
+  else
+    # No .nvmrc file found.
+
+    # Clear any warning suppression
+    unset AUTOSWITCH_NODE_SUPPRESS_WARNING
+
+    # Revert to default version, unless that's already the current version.
+    if [[ $CURRENT_NODE_VERSION != $(nvm version default)  ]]; then
+      nvm use default
+    fi
+  fi
+}
+
+# Run the above function in ZSH whenever you change directory
+autoload -U add-zsh-hook
+add-zsh-hook chpwd auto-switch-node-version
+auto-switch-node-version
