@@ -194,26 +194,27 @@
       }
     ]
   },
-  "terminal.integrated.fontWeightBold": "700",
-  "terminal.integrated.fontWeight": "700",
-  "workbench.iconTheme": "material-icon-theme",
-  "editor.fontFamily": "Fira Code",
+  "terminal.integrated.fontWeightBold": "500",
+  "terminal.integrated.fontWeight": "500",
+  "terminal.integrated.fontSize": 10,
   "terminal.integrated.fontFamily": "Fira Code",
-  "editor.inlineSuggest.enabled": true,
   "terminal.integrated.gpuAcceleration": "off",
+  "editor.fontFamily": "Fira Code",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.inlineSuggest.enabled": true,
   "cSpell.language": "en,pt,pt_BR",
   "github.copilot.enable": {
     "*": true,
-    "yaml": true,
     "plaintext": true,
-    "markdown": true
+    "markdown": true,
+    "scminput": false,
+    "yaml": true
   },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "editor.accessibilitySupport": "off",
   "workbench.colorTheme": "Dracula",
-  "dart.hotReloadOnSave": "all",
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
@@ -224,9 +225,42 @@
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.suggestSelection": "first",
     "editor.tabCompletion": "onlySnippets",
-    "editor.wordBasedSuggestions": false
+    "editor.wordBasedSuggestions": "off"
   },
-  "generate.template.type": "Clean Code",
-  "files.autoSave": "afterDelay",
-  "terminal.integrated.defaultProfile.osx": "zsh"
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "[javascript][javascriptreact][typescript][typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "window.autoDetectColorScheme": true,
+  "window.dialogStyle": "custom",
+  "window.titleBarStyle": "custom",
+  "window.zoomLevel": 1,
+  "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    },
+    "Ubuntu (WSL)": {
+      "path": "C:\\Windows\\System32\\wsl.exe",
+      "args": [
+        "-d",
+        "Ubuntu"
+      ]
+    }
+  },
+  "window.menuBarVisibility": "compact"
 }
