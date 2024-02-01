@@ -1,7 +1,7 @@
 [alias]
 	ci = commit -m
-	st = status
-	go = add -A
-	lg = log --pretty=format:'%Cred%h%Creset %C(bold)%cr%Creset %Cgreen<%an>%Creset %s' --max-count=30
-	up = push origin master
-	down = pull origin master
+	s = status
+	add = add .
+	l = log --pretty=format:'%Cred%h%Creset %C(bold)%cr%Creset %Cgreen<%an>%Creset %s' --max-count=30
+	up = push origin main
+	down = pull origin main
